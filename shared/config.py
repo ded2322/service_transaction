@@ -12,6 +12,10 @@ environ.Env.read_env(BASE_DIR / '.env')
 class Settings(BaseSettings):
     @property
     def DATABASE_URL(self):
-        return f"postgresql+asyncpg://{env('DB_USER')}:{env('DB_PASS')}@{env('DB_HOST')}:{env('DB_PORT')}/{env('DB_NAME')}"
+        return f"postgresql+asyncpg://{env('DB_USER')}:{env('DB_PASSWORD')}@{env('DB_HOST')}:{env('DB_PORT')}/{env('DB_NAME')}"
+    
+    SECRET_KEY: str = env("SECRET_KEY")
+    ALGORITHM: str = env("ALGORITHM")
+    ACCESS_TOKEN_EXPIRE_MINUTES:int = env("ACCESS_TOKEN_EXPIRE_MINUTES")
 
 settings = Settings()

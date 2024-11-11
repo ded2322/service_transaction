@@ -20,5 +20,4 @@ class JWTTokenSchema(BaseModel):
 
 
 class UserUpdateDataSchema(BaseModel):
-    name: Optional[str] = None
-    password: Optional[str] = None
+    password: str

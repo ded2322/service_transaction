@@ -1,8 +1,8 @@
 from fastapi import HTTPException
 
-from shared.orm.user_orm import UserOrm
-from user_microservice.users_schemas import UserDataRegisterSchema, UserDataLoginSchema
-#from core.utils.auth import verification_password
+from auth_microservice.orm.user_orm import UserOrm
+from auth_microservice.schemas.users_schemas import UserDataRegisterSchema, UserDataLoginSchema
+from auth_microservice.utils.auth import verification_password
 
 
 class AuthCheck:

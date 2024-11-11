@@ -1,9 +1,9 @@
 from fastapi import HTTPException
 
-from shared.orm.user_orm import UserOrm
-from user_microservice.users_schemas import UserDataRegisterSchema, UserDataLoginSchema
-from user_microservice.user_validator import UserValidator, AuthCheck
-from user_microservice.auth import get_password_hash, create_access_token
+from auth_microservice.orm.user_orm import UserOrm
+from auth_microservice.schemas.users_schemas import UserDataRegisterSchema, UserDataLoginSchema
+from auth_microservice.validator.user_validator import UserValidator, AuthCheck
+from auth_microservice.utils.auth import get_password_hash, create_access_token
 
 
 class AuthService:
@@ -32,6 +32,6 @@ class AuthService:
         if await UserValidator.validate_login_credentials(user, data_user):
                 raise HTTPException(status_code=401, detail="Invalid credentials")
 
-        #response.set_cookie("access_token", create_access_token({"sub": str(user["id"])}), httponly=True)
+        
         return create_access_token({"sub": str(user["id"])})
-        #return {"message": "User logged successfully"}
+        

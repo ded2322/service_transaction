@@ -8,8 +8,8 @@ from alembic import context
 from shared.config import settings
 from shared.database import Base
 
-from shared.models.user_models import Users
-from shared.models.transction_models import Transaction
+from auth_microservice.models.user_models import Users
+#from shared.models.transction_models import Transaction
 
 config = context.config
 config.set_main_option("sqlalchemy.url", f"{settings.DATABASE_URL}?async_fallback=True")
