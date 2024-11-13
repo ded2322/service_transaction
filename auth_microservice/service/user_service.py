@@ -1,4 +1,4 @@
-from auth_microservice.utils.auth import DecodeJWT,get_password_hash
+from auth_microservice.utils.auth import decode_jwt_user_id, get_password_hash
 from auth_microservice.schemas.users_schemas import JWTTokenSchema, UserUpdateDataSchema
 from auth_microservice.validator.user_validator import UserValidator, AuthCheck
 from auth_microservice.orm.user_orm import UserOrm
@@ -13,7 +13,7 @@ class UserService:
     async def update_data_user(cls, data_update: UserUpdateDataSchema, jwt_token: JWTTokenSchema):
         """Обновляет данные пользователя на основе предоставленной информации."""
 
-        user_data = await AuthCheck.get_user_info(id=DecodeJWT.decode_jwt(jwt_token.token))
+        user_data = await AuthCheck.get_user_info(id=decode_jwt_user_id(jwt_token.token))
 
 
         UserValidator.check_availability_user(user_data)
